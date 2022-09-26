@@ -1,0 +1,73 @@
+name: 'build-test'
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'releases/*'
+
+jobs:
+  build: # make sure build/ci work properly
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout self
+        uses: actions/checkout@v3
+      - name: Checkout aadb2c-testdata
+        uses: actions/checkout@v3
+        with:
+          repository: CarstenBlumeMSFT/aadb2c-testdata
+          path: './aadb2c-testdata'
+      - name: Run install
+        run: |
+          npm install
+      - name: Run all
+        run: |
+          npm run all
+        env:
+          POLICYFOLDER: ./aadb2c-testdata/SocialAndLocalAccounts/Environments/AADB2CTest
+          TENANT: ${{ secrets.tenant }}
+          CLIENTID: ${{ secrets.clientId }}
+          CLIENTSECRET: ${{ secrets.clientSecret }}
+          CLIENTCERTIFICATETHUMBPRINT: ${{ secrets.clientCertificateThumbprint }}
+          CLIENTCERTIFICATEKEY: ${{ secrets.clientCertificateKey }}
+          CLIENTCERTIFICATEPASS: ${{ secrets.clientCertificatePass }}
+  test: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout self
+        uses: actions/checkout@v3
+      - name: Checkout aadb2c-testdata
+        uses: actions/checkout@v3
+        with:
+          repository: CarstenBlumeMSFT/aadb2c-testdata
+          path: './aadb2c-testdata'
+      - name: Upload with Client Secret
+        uses: ./
+        with:
+          policyFolder: ./aadb2c-testdata/SocialAndLocalAccounts/Environments/AADB2CTest
+          tenant: ${{ secrets.tenant }}
+          clientId: ${{ secrets.clientId }}
+          clientSecret: ${{ secrets.clientSecret }}
+          verbose: "true"
+      - name: Upload with Client Certificate
+        uses: ./
+        with:
+          policyFolder: ./aadb2c-testdata/SocialAndLocalAccounts/Environments/AADB2CTest
+          tenant: ${{ secrets.tenant }}
+          clientId: ${{ secrets.clientId }}
+          clientCertificateThumbprint: ${{ secrets.clientCertificateThumbprint }}
+          clientCertificateKey: ${{ secrets.clientCertificateKey }}
+          clientCertificatePass: ${{ secrets.clientCertificatePass }}
+          verbose: "true"
+      - name: Upload with GitHub Token
+        uses: ./
+        with:
+          policyFolder: ./aadb2c-testdata/SocialAndLocalAccounts/Environments/AADB2CTest
+          tenant: ${{ secrets.tenant }}
+          clientId: ${{ secrets.clientId }}
+          verbose: "true"
