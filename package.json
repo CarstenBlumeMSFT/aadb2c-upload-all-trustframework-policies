@@ -31,7 +31,7 @@
     "aadb2c-core-modules-js": "github:CarstenBlumeMSFT/aadb2c-core-modules-js"
   },
   "devDependencies": {
-    "@types/node": "^18.7.22",
+    "@types/node": "^18.8.0",
     "@typescript-eslint/parser": "^5.38.0",
     "@vercel/ncc": "^0.34.0",
     "eslint": "^8.0.1",
