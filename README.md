@@ -35,10 +35,10 @@ jobs:
       contents: read
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: 'Upload all policies'
-      uses: CarstenBlumeMSFT/aadb2c-upload-all-trustframework-policies@v0.0.1
+      uses: FlowerFYI/aadb2c-upload-all-trustframework-policies@v0.0.1
       with:
         policyFolder: ./MyGeneratedPolicyFolder
         tenant: ${{ env.tenant }}
@@ -69,10 +69,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: 'Upload all policies'
-      uses: CarstenBlumeMSFT/aadb2c-upload-all-trustframework-policies@v0.0.1
+      uses: FlowerFYI/aadb2c-upload-all-trustframework-policies@v0.0.1
       with:
         policyFolder: ./MyGeneratedPolicyFolder
         tenant: ${{ env.tenant }}
@@ -108,10 +108,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: 'Upload all policies'
-      uses: CarstenBlumeMSFT/aadb2c-upload-all-trustframework-policies@v0.0.1
+      uses: FlowerFYI/aadb2c-upload-all-trustframework-policies@v0.0.1
       with:
         policyFolder: ./MyGeneratedPolicyFolder
         tenant: ${{ env.tenant }}

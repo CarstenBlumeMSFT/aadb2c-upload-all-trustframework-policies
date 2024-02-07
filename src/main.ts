@@ -117,12 +117,14 @@ async function run(): Promise<void> {
     )
 
     if (settings.clientSecret !== '') {
+      core.info('Initializing authentication provider with client secret.')
       authProvider.initializeWithClientSecret(settings.clientSecret)
     } else if (
       settings.clientCertificateThumbprint !== '' &&
       settings.clientCertificatePass !== '' &&
       settings.clientCertificateKey !== ''
     ) {
+      core.info('Initializing authentication provider with client certificate.')
       authProvider.initializeWithClientCertificate(
         settings.clientCertificateThumbprint,
         settings.clientCertificateKey,

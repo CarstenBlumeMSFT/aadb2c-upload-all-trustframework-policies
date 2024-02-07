@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout self
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Checkout aadb2c-testdata
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          repository: CarstenBlumeMSFT/aadb2c-testdata
+          repository: FlowerFYI/aadb2c-testdata
           path: './aadb2c-testdata'
       - name: Run install
         run: |
@@ -40,11 +40,11 @@ jobs:
 
     steps:
       - name: Checkout self
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Checkout aadb2c-testdata
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          repository: CarstenBlumeMSFT/aadb2c-testdata
+          repository: FlowerFYI/aadb2c-testdata
           path: './aadb2c-testdata'
       - name: Upload with Client Secret
         uses: ./
